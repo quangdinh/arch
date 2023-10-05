@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sys_apps=( avahi-discover bssh bvnc nm-connection-editor qv4l2 qvidcap lstopo xfce4-about)
+sys_apps=( avahi-discover bssh bvnc qv4l2 qvidcap lstopo xfce4-about)
 dir="/usr/share/applications"
 for app in ${sys_apps[@]}; do
   file_name="$dir/$app.desktop"
