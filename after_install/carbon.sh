@@ -7,4 +7,4 @@ set -e
 ./hyprland.sh
 yay -Syu --noconfirm rbenv ruby-build nvm 1password mongodb-compass \
   libreoffice-fresh postman-bin slack-desktop-wayland google-chrome \
-  gita
+  gita kubectl
