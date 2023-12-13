@@ -7,5 +7,5 @@ set -e
 ./hyprland.sh
 ./dark_mode.sh
 yay -Syu --noconfirm rbenv ruby-build nvm 1password mongodb-compass \
-  libreoffice-fresh postman-bin slack-desktop-wayland google-chrome \
+  postman-bin slack-desktop-wayland google-chrome \
   gita kubectl k9s
