@@ -8,4 +8,4 @@ set -e
 ./dark_mode.sh
 yay -Syu --noconfirm rbenv ruby-build nvm 1password mongodb-compass \
   libreoffice-fresh postman-bin slack-desktop-wayland google-chrome \
-  gita kubectl
+  gita kubectl k9s
