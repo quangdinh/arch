@@ -2,4 +2,4 @@
 
 set -e
 
-yay -S gnome-browser-connector 
+yay -Syu --noconfirm gnome-browser-connector 

@@ -5,6 +5,5 @@ set -e
 ./thinkpad.sh
 ./firewall.sh
 ./gnome.sh
-yay -Syu --noconfirm rbenv ruby-build nvm 1password mongodb-compass \
-  postman-bin slack-desktop-wayland google-chrome \
-  gita kubectl k9s
+./dark_mode.sh
+./carbon-apps.sh
