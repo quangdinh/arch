@@ -642,7 +642,7 @@ run_chroot("/usr/bin/systemctl", "enable", "NetworkManager")
 print("Done")
 
 print_task("Installing System Utilities")
-run_chroot("/usr/bin/pacman", "-S --noconfirm", "udiskie rclone openssh brightnessctl yadm neovim bottom bat procs exa luarocks python-neovim fd wget ripgrep python-pip unzip")
+run_chroot("/usr/bin/pacman", "-S --noconfirm", "openssh yadm neovim bottom bat procs exa luarocks python-neovim fd wget ripgrep python-pip unzip")
 print("Done")
 
 if yubi_key:
@@ -660,7 +660,7 @@ if bluetooth:
 
 if audio:
   print_task("Installing Audio Drivers")
-  run_chroot("/usr/bin/pacman", "-S --noconfirm", "pipewire wireplumber pipewire-audio sof-firmware pipewire-pulse pulsemixer")
+  run_chroot("/usr/bin/pacman", "-S --noconfirm", "pipewire wireplumber pipewire-audio sof-firmware pipewire-pulse")
   print("Done")
 
 if git_base:
