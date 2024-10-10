@@ -240,9 +240,9 @@ def run_chroot(*args):
 def print_task(task):
   print("{:<40}{:<1}".format(task, ": "), end='', flush=True)
 
-def ask_zsh():
-  zsh = request_input("Do you want to switch shell to ZSH? [Yes]/No ")
-  if zsh.lower() == "yes" or zsh.lower() == "y" or zsh == "":
+def ask_fish():
+  fish = request_input("Do you want to switch shell to fish? [Yes]/No ")
+  if fish.lower() == "yes" or fish.lower() == "y" or fish == "":
     return True
   return False
 
@@ -370,7 +370,7 @@ lang = locales[0] + ".UTF-8"
 bluetooth = detect_bluetooth()
 
 clear()
-use_zsh = ask_zsh()
+use_fish = ask_fish()
 
 clear()
 print("Setup your user account, this account will have sudo access")
@@ -561,11 +561,11 @@ run_chroot("echo", hostname, ">", "/etc/hostname")
 run_chroot("echo", "-e", '"127.0.0.1\\tlocalhost\\n::1\\tlocalhost\\n127.0.1.1\\t' + hostname + '.local ' + hostname, "\" >", "/etc/hosts")
 print("Done")
 
-if use_zsh:
-  print_task("Setup zsh")
-  run_chroot("/usr/bin/pacman", "-S --noconfirm", "zsh fzf zoxide")
-  run_chroot("/usr/bin/chsh", "-s", "/usr/bin/zsh")
-  run_chroot("/usr/bin/sed", "-i -e", '"s/SHELL=.*/\SHELL=\/usr\/bin\/zsh/g"', "/etc/default/useradd")
+if use_fish:
+  print_task("Setup fish")
+  run_chroot("/usr/bin/pacman", "-S --noconfirm", "fish fzf zoxide")
+  run_chroot("/usr/bin/chsh", "-s", "/usr/bin/fish")
+  run_chroot("/usr/bin/sed", "-i -e", '"s/SHELL=.*/\SHELL=\/usr\/bin\/fish/g"', "/etc/default/useradd")
   print("Done")
 
 print_task("Installing Sudo")
@@ -636,13 +636,13 @@ if disk != "None":
   run_chroot("/usr/bin/efibootmgr", "--create", "--disk", disk, "--part 1", "--label \"Arch Linux\"", "--loader", "/vmlinuz-linux-lts", "--unicode",  cmdLine, "--verbose")
   print("Done")
 
-print_task("Installing NetworkManager & Strongswan")
-run_chroot("/usr/bin/pacman", "-S --noconfirm", "networkmanager networkmanager-strongswan strongswan")
+print_task("Installing NetworkManager")
+run_chroot("/usr/bin/pacman", "-S --noconfirm", "networkmanager")
 run_chroot("/usr/bin/systemctl", "enable", "NetworkManager")
 print("Done")
 
 print_task("Installing System Utilities")
-run_chroot("/usr/bin/pacman", "-S --noconfirm", "openssh yadm neovim bottom bat procs exa luarocks python-neovim fd wget ripgrep python-pip unzip")
+run_chroot("/usr/bin/pacman", "-S --noconfirm", "openssh yadm neovim tree-sitter-cli bottom bat procs exa luarocks python-neovim python-pipx fd wget ripgrep python-pip unzip")
 print("Done")
 
 if yubi_key:
