@@ -206,7 +206,7 @@ def ask_swap():
   return ask_swap()
 
 def detect_cpu():
-  c = os.popen('cat /proc/cpuinfo | grep -o -m1 "AMD\|Intel"').readline().strip()
+  c = os.popen(r'cat /proc/cpuinfo | grep -o -m1 "AMD\|Intel"').readline().strip()
   if c == "AMD":
     return "AMD"
   if c == "Intel":
@@ -263,8 +263,8 @@ def parse_efi(efi_part):
   return dev, part
 
 def parse_hooks_encrypt_lvm(encrypt):
-  current_hooks = os.popen("cat /mnt/etc/mkinitcpio.conf | grep -oP '^HOOKS=(\(.*\))$'").readline().strip()
-  objects = re.search('\((.*)\)', current_hooks)
+  current_hooks = os.popen(r"cat /mnt/etc/mkinitcpio.conf | grep -oP '^HOOKS=(\(.*\))$'").readline().strip()
+  objects = re.search(r'\((.*)\)', current_hooks)
   hooks = []
   if objects:
     hooks = objects.group(1).split(' ')
@@ -293,7 +293,7 @@ def parse_hooks_encrypt_lvm(encrypt):
   return " ".join(results)
 
 def detect_vga():
-  vga = os.popen("lspci -v | grep -A1 -e VGA -e 3D | grep -o -m1 'NVIDIA\|Intel\|AMD\|ATI\|Radeon'").readline().strip()
+  vga = os.popen(r"lspci -v | grep -A1 -e VGA -e 3D | grep -o -m1 'NVIDIA\|Intel\|AMD\|ATI\|Radeon'").readline().strip()
   if vga == "":
     return 'Generic'
   if vga == "AMD" or vga == "ATI" or vga == "Radeon":
@@ -565,7 +565,7 @@ if use_fish:
   print_task("Setup fish")
   run_chroot("/usr/bin/pacman", "-S --noconfirm", "fish fzf zoxide")
   run_chroot("/usr/bin/chsh", "-s", "/usr/bin/fish")
-  run_chroot("/usr/bin/sed", "-i -e", '"s/SHELL=.*/\SHELL=\/usr\/bin\/fish/g"', "/etc/default/useradd")
+  run_chroot("/usr/bin/sed", "-i -e", r'"s/SHELL=.*/\SHELL=\/usr\/bin\/fish/g"', "/etc/default/useradd")
   print("Done")
 
 print_task("Installing Sudo")
