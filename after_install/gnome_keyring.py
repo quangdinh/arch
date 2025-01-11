@@ -21,7 +21,8 @@ def signal_handler(sig, frame):
 signal.signal(signal.SIGINT, signal_handler)
 
 def add_gnome_keyring():
-  file = "/etc/pam.d/login"
+  file = "/etc/pam.d/greetd"
+  autoStart = False
   with open(file, "r") as f:
     lines = f.readlines()
     newLines = []
@@ -31,8 +32,11 @@ def add_gnome_keyring():
         return
       if line.startswith("account"):
         newLines.append("auth       optional     pam_gnome_keyring.so")
-      if line.startswith("password"):
+      if line.startswith("session") and line.endswith("system-local-login") and not autoStart:
+        autoStart = True
+        newLines.append(line)
         newLines.append("session    optional     pam_gnome_keyring.so auto_start")
+        continue
       newLines.append(line)
   with open(file, "w") as f:
     out = "\n".join(newLines)

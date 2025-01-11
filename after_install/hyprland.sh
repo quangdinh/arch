@@ -5,12 +5,14 @@ set -e
 
 sudo pacman -S --noconfirm hyprland hyprpaper hyprlock hypridle waybar wofi ghostty \
   xdg-user-dirs-gtk imv zathura zathura-pdf-poppler mpv xdg-desktop-portal-gtk \
-  xdg-desktop-portal-hyprland mako ly slurp grim wl-clipboard libnotify jq \
+  xdg-desktop-portal-hyprland mako greetd greetd-regreet slurp grim wl-clipboard libnotify jq \
   swappy polkit-gnome ttf-dejavu noto-fonts noto-fonts-extra noto-fonts-emoji \
   ncmpcpp mpd mpc nm-connection-editor brightnessctl
-yay -S --noconfirm hyprland-relative-workspace-bin uwsm
+yay -S --noconfirm uwsm
 sudo ./gnome_keyring.py
-sudo systemctl enable ly.service
+sudo mkdir -p /etc/greetd
+sudo cp ./hyprland-configs/greetd/* /etc/greetd/
+sudo systemctl enable greetd.service
 sudo ./hide_system_apps.sh
 ./yazi.sh
 ./imv.sh
