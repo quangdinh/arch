@@ -3,18 +3,18 @@
 ################################################################################
 
 # With:       reflector @/etc/xdg/reflector/reflector.conf
-# When:       2023-09-18 20:21:57 UTC
+# When:       2025-01-08 16:06:30 UTC
 # From:       https://archlinux.org/mirrors/status/json/
-# Retrieved:  2023-09-18 20:18:58 UTC
-# Last Check: 2023-09-18 20:13:20 UTC
+# Retrieved:  2025-01-08 16:06:21 UTC
+# Last Check: 2025-01-08 15:58:11 UTC
 
-Server = https://mirror.theo546.fr/archlinux/$repo/os/$arch
-Server = https://mirror.cyberbits.eu/archlinux/$repo/os/$arch
-Server = https://de.arch.mirror.kescher.at/$repo/os/$arch
-Server = https://mirror.sunred.org/archlinux/$repo/os/$arch
-Server = https://ftp.halifax.rwth-aachen.de/archlinux/$repo/os/$arch
+Server = https://de.arch.niranjan.co/$repo/os/$arch
 Server = https://arch.phinau.de/$repo/os/$arch
+Server = https://mirror.cyberbits.eu/archlinux/$repo/os/$arch
+Server = https://mirror.ubrco.de/archlinux/$repo/os/$arch
+Server = https://mirror.lcarilla.de/archlinux/$repo/os/$arch
+Server = https://mirror.moson.org/arch/$repo/os/$arch
+Server = https://mirror.theo546.fr/archlinux/$repo/os/$arch
 Server = https://mirror.pseudoform.org/$repo/os/$arch
 Server = https://mirror.kumi.systems/archlinux/$repo/os/$arch
-Server = https://mirror.f4st.host/archlinux/$repo/os/$arch
 Server = https://archlinux.thaller.ws/$repo/os/$arch

@@ -8,11 +8,11 @@ sudo pacman -S --noconfirm hyprland hyprpaper hyprlock hypridle waybar wofi ghos
   xdg-desktop-portal-hyprland mako ly slurp grim wl-clipboard libnotify jq \
   swappy polkit-gnome noto-fonts noto-fonts-extra noto-fonts-emoji \
   ncmpcpp mpd mpc nm-connection-editor brightnessctl
-yay -S --noconfirm hyprland-relative-workspace-bin
+yay -S --noconfirm hyprland-relative-workspace-bin uwsm
 sudo ./gnome_keyring.py
 sudo systemctl enable ly.service
 sudo ./hide_system_apps.sh
-./ranger.sh
+./yazi.sh
 ./imv.sh
 sudo mkdir -p /usr/local/bin
 sudo cp ./hyprland/* /usr/local/bin/
