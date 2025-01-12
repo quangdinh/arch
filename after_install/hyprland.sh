@@ -10,6 +10,7 @@ sudo pacman -S --noconfirm hyprland hyprpaper hyprlock hypridle waybar wofi ghos
   ncmpcpp mpd mpc nm-connection-editor brightnessctl
 sudo ./gnome_keyring.py
 yay -S --noconfirm uwsm
+sudo sed -i -E "s/Exec=(.*) -- (.*)/Exec=\1 \&> \/dev\/null -- \2/g" /usr/share/wayland-sessions/hyprland-uwsm.desktop
 sudo systemctl enable ly.service
 sudo ./hide_system_apps.sh
 ./yazi.sh
