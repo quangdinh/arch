@@ -8,8 +8,8 @@ sudo pacman -S --noconfirm hyprland hyprpaper hyprlock hypridle waybar wofi ghos
   xdg-desktop-portal-hyprland mako ly slurp grim wl-clipboard libnotify jq \
   swappy polkit-gnome ttf-dejavu noto-fonts noto-fonts-extra noto-fonts-emoji \
   ncmpcpp mpd mpc nm-connection-editor brightnessctl
-yay -S --noconfirm uwsm
 sudo ./gnome_keyring.py
+yay -S --noconfirm uwsm
 sudo systemctl enable ly.service
 sudo ./hide_system_apps.sh
 ./yazi.sh
