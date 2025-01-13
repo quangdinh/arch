@@ -11,3 +11,4 @@ sudo systemctl enable gdm
 sudo ./hide_system_apps.sh
 ./nautilus.sh
 ./gnome-extensions.sh
+gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
