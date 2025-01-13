@@ -528,7 +528,6 @@ print("Done")
 print_task("Updating pacman")
 run_chroot("/usr/bin/pacman", "-Syu")
 run_chroot("/usr/bin/sed", "-i -E", r'"s/OPTIONS=\((.*) debug (.*)\)/OPTIONS=\(\1 !debug \2\)/g"', "/etc/makepkg.conf")
-run_chroot("/usr/bin/sed", "-i -e", r' "s/#ParallelDownloads =/ParallelDownloads =/g"', "/etc/pacman.conf")
 print("Done")
 
 
