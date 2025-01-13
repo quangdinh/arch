@@ -645,7 +645,7 @@ run_chroot("/usr/bin/systemctl", "enable", "NetworkManager")
 print("Done")
 
 print_task("Installing System Utilities")
-run_chroot("/usr/bin/pacman", "-S --noconfirm", "openssh yadm neovim tree-sitter-cli bottom bat procs exa luarocks python-neovim python-pipx fd wget ripgrep python-pip unzip")
+run_chroot("/usr/bin/pacman", "-S --noconfirm", "man-db openssh yadm neovim tree-sitter-cli bottom bat procs exa luarocks python-neovim python-pipx fd wget ripgrep python-pip unzip")
 print("Done")
 
 if yubi_key:
