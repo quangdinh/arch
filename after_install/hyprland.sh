@@ -5,7 +5,7 @@ set -e
 
 sudo pacman -S --noconfirm hyprland hyprpaper hyprlock hypridle waybar wofi ghostty \
   xdg-user-dirs-gtk imv zathura zathura-pdf-poppler mpv xdg-desktop-portal-gtk \
-  xdg-desktop-portal-hyprland mako ly slurp grim wl-clipboard libnotify jq \
+  xdg-desktop-portal-hyprland swaync ly slurp grim wl-clipboard libnotify jq \
   swappy polkit-gnome ttf-dejavu noto-fonts noto-fonts-extra noto-fonts-emoji \
   ncmpcpp mpd mpc nm-connection-editor brightnessctl
 sudo ./gnome_keyring.py

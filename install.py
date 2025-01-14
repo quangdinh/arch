@@ -293,11 +293,10 @@ def parse_hooks_encrypt_lvm(encrypt):
   return " ".join(results)
 
 def detect_vga():
-  vga = os.popen(r"lspci -v | grep -A1 -e VGA -e 3D | grep -o -m1 'NVIDIA\|Intel\|AMD\|ATI\|Radeon'").readline().strip()
-  if vga == "":
-    return 'Generic'
-  if vga == "AMD" or vga == "ATI" or vga == "Radeon":
-    return "AMD"
+  gpus = os.popen(rf"lspci -v | grep -A1 -e VGA -e 3D | grep -o 'NVIDIA\|Intel\|AMD\|ATI\|Radeon'").readlines();
+  vga = set()
+  for gpu in gpus:
+    vga.add(gpu.strip().lower())
   return vga
 
 def get_crypt_uuid(disk):
@@ -335,7 +334,7 @@ def format_root(partition, fs):
     run_command("/usr/bin/mkfs.xfs", partition)
 
 cpu = detect_cpu()
-vga = detect_vga().lower()
+vga = detect_vga()
 
 clear()
 hostname = ask_hostname()
@@ -404,7 +403,7 @@ print("This script will install Arch Linux as follow:")
 
 print("{:>35}{:<1} {:<50}".format("Hostname", ":", hostname))
 print("{:>35}{:<1} {:<50}".format("CPU", ":", cpu))
-print("{:>35}{:<1} {:<50}".format("VGA", ":", vga))
+print("{:>35}{:<1} {:<50}".format("VGA", ":", ",".join(vga)))
 
 if disk == "None":
   print("{:>35}{:<1} {:<50}".format("Disk", ":", "No partitioning. Already mounted at /mnt"))
@@ -585,6 +584,12 @@ print_task("Installing kernel")
 run_chroot("/usr/bin/pacman", "-S --noconfirm", "linux-lts linux-firmware")
 print("Done")
 
+if 'nvidia' in vga:
+  print_task("Installing nvidia")
+  run_chroot("/usr/bin/pacman", "-S --noconfirm", "nvidia-lts")
+  print("Done")
+
+
 if cpu == "AMD":
   print_task("Installing AMD microcode")
   run_chroot("/usr/bin/pacman", "-S --noconfirm", "amd-ucode")
@@ -602,11 +607,14 @@ if disk != "None" and encrypt:
 
 hooks = parse_hooks_encrypt_lvm(encrypt)
 
-if vga == "intel":
-  run_chroot("/usr/bin/sed", "-i -e", "\"s/MODULES=(.*)/MODULES=(i915)/g\"", "/etc/mkinitcpio.conf")
+modules = set()
 
-if vga == "amd":
-  run_chroot("/usr/bin/sed", "-i -e", "\"s/MODULES=(.*)/MODULES=(amdgpu)/g\"", "/etc/mkinitcpio.conf")
+if 'intel' in vga:
+  modules.add('i915')
+if 'amd' in vga or 'ati' in vga or 'radeon' in vga:
+  modules.add('amdgpu')
+
+run_chroot("/usr/bin/sed", "-i -E", "\"s/MODULES=(.*)/MODULES=("+ " ".join(modules) + ")/g\"", "/etc/mkinitcpio.conf")
 
 if encrypt:
   run_chroot("/usr/bin/sed", "-i -e", "\"s/HOOKS=(.*)/HOOKS=(" + hooks + ")/g\"", "/etc/mkinitcpio.conf")
