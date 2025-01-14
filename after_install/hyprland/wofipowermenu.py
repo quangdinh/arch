@@ -12,7 +12,7 @@ def run_menu():
   )
 
   actions = (
-    "loginctl terminate-user \"\"",
+    "loginctl terminate-session $XDG_SESSION_ID",
     "systemctl suspend",
     "systemctl hibernate",
     "systemctl reboot",
