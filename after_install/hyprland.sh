@@ -9,8 +9,8 @@ sudo pacman -S --noconfirm hyprland hyprpaper hyprlock hypridle waybar wofi ghos
   swappy polkit-gnome ttf-dejavu noto-fonts noto-fonts-extra noto-fonts-emoji \
   ncmpcpp mpd mpc nm-connection-editor brightnessctl
 sudo ./gnome_keyring.py
-sudo rm /usr/share/wayland-sessions/hyprland.desktop
-sudo mv /usr/share/wayland-sessions/hyprland-uwsm.desktop /usr/share/wayland-sessions/hyprland.desktop 
+sudo rm /usr/share/wayland-sessions/hyprland-uwsm.desktop
+sudo sed -i -e 's/Exec=.*$/Exec=uwsm start \&>> \/dev\/null -- Hyprland \&>> \/dev\/null/g' /usr/share/wayland-sessions/hyprland.desktop
 sudo systemctl enable ly.service
 systemctl --user enable waybar.service
 sudo ./hide_system_apps.sh
