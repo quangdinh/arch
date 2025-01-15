@@ -581,12 +581,12 @@ run_chroot("passwd -l root")
 print("Done")
 
 print_task("Installing kernel")
-run_chroot("/usr/bin/pacman", "-S --noconfirm", "linux-lts linux-firmware")
+run_chroot("/usr/bin/pacman", "-S --noconfirm", "linux linux-firmware")
 print("Done")
 
 if 'nvidia' in vga:
   print_task("Installing nvidia")
-  run_chroot("/usr/bin/pacman", "-S --noconfirm", "nvidia-lts")
+  run_chroot("/usr/bin/pacman", "-S --noconfirm", "nvidia")
   print("Done")
 
 
@@ -609,8 +609,6 @@ hooks = parse_hooks_encrypt_lvm(encrypt)
 
 modules = set()
 
-if 'intel' in vga:
-  modules.add('i915')
 if 'amd' in vga or 'ati' in vga or 'radeon' in vga:
   modules.add('amdgpu')
 
@@ -625,11 +623,11 @@ if disk != "None":
   rootuuid = get_root_uuid()
 
   cpucode = get_cpu_code(cpu)
-  cmdLine = 'root=UUID=' + rootuuid + ' rw ' + cpucode + 'initrd=/initramfs-linux-lts.img'
+  cmdLine = 'root=UUID=' + rootuuid + ' rw ' + cpucode + 'initrd=/initramfs-linux.img'
 
   if encrypt:
     cryptuuid = get_crypt_uuid(disk)
-    cmdLine = 'cryptdevice=UUID=' + cryptuuid + ':cryptlvm root=UUID=' + rootuuid + ' rw ' + cpucode + 'initrd=/initramfs-linux-lts.img'
+    cmdLine = 'cryptdevice=UUID=' + cryptuuid + ':cryptlvm root=UUID=' + rootuuid + ' rw ' + cpucode + 'initrd=/initramfs-linux.img'
   
   cmdLine = '"' + cmdLine + ' quiet loglevel=3 splash rd.systemd.show_status=auto rd.udev.log_priority=3 module_blacklist=iTCO_wdt,iTCO_vendor_support fbcon=nodefer"'
 
@@ -640,7 +638,7 @@ if disk != "None":
   efiboot = os.popen('efibootmgr | grep "Arch Linux" | grep -oP "[0-9]+"').readline().strip()
   if efiboot != "":
     run_chroot("/usr/bin/efibootmgr", "-Bb", efiboot)
-  run_chroot("/usr/bin/efibootmgr", "--create", "--disk", disk, "--part 1", "--label \"Arch Linux\"", "--loader", "/vmlinuz-linux-lts", "--unicode",  cmdLine, "--verbose")
+  run_chroot("/usr/bin/efibootmgr", "--create", "--disk", disk, "--part 1", "--label \"Arch Linux\"", "--loader", "/vmlinuz-linux", "--unicode",  cmdLine, "--verbose")
   print("Done")
 
 print_task("Installing NetworkManager")
