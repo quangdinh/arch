@@ -6,4 +6,4 @@ set -e
 ./firewall.sh
 ./hyprland.sh
 ./dark_mode.sh
-./carbon-apps.sh
+./apps.sh

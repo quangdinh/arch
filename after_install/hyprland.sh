@@ -2,6 +2,7 @@
 
 set -e
 
+sudo groupadd polkitd || echo "Polkitd Already exist"
 
 sudo pacman -S --noconfirm hyprland hyprpaper hyprlock hypridle waybar wofi ghostty \
   xdg-user-dirs-gtk imv zathura zathura-pdf-poppler mpv xdg-desktop-portal-gtk \
@@ -10,7 +11,7 @@ sudo pacman -S --noconfirm hyprland hyprpaper hyprlock hypridle waybar wofi ghos
   ncmpcpp mpd mpc nm-connection-editor brightnessctl hyprpicker hyprsunset \
   kanshi
 
-yay -S --noconfirm overskride-bin
+yay -S --noconfirm overskride-bin uwsm
 
 sudo ./gnome_keyring.py
 sudo rm /usr/share/wayland-sessions/hyprland-uwsm.desktop
