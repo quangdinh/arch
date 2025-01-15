@@ -524,6 +524,8 @@ print_task("Bootstrapping")
 run_command("/usr/bin/pacstrap", "/mnt", "base")
 print("Done")
 
+run_chroot("groupadd polkitd || echo Ok")
+
 print_task("Updating pacman")
 run_chroot("/usr/bin/pacman", "-Syu")
 run_chroot("/usr/bin/sed", "-i -E", r'"s/OPTIONS=\((.*) debug (.*)\)/OPTIONS=\(\1 !debug \2\)/g"', "/etc/makepkg.conf")

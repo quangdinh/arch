@@ -2,8 +2,6 @@
 
 set -e
 
-sudo groupadd polkitd || echo "Polkitd Already exist"
-
 sudo pacman -S --noconfirm hyprland hyprpaper hyprlock hypridle waybar wofi ghostty \
   xdg-user-dirs-gtk imv zathura zathura-pdf-poppler mpv xdg-desktop-portal-gtk \
   xdg-desktop-portal-hyprland swaync ly slurp grim wl-clipboard libnotify jq \
