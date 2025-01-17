@@ -5,5 +5,7 @@ set -e
 ./thinkpad.sh
 ./firewall.sh
 ./hyprland.sh
+./fingerprint.sh
+./ms-fonts.sh
 ./dark_mode.sh
 ./apps.sh
