@@ -7,9 +7,9 @@ sudo pacman -S --noconfirm hyprland hyprpaper hyprlock hypridle waybar wofi ghos
   xdg-desktop-portal-hyprland swaync ly slurp grim wl-clipboard libnotify jq \
   swappy polkit-gnome ttf-dejavu noto-fonts noto-fonts-extra noto-fonts-emoji \
   ncmpcpp mpd mpc nm-connection-editor brightnessctl hyprpicker hyprsunset \
-  kanshi gnome-keyring
+  kanshi gnome-keyring pulsemixer
 
-yay -S --noconfirm overskride-bin uwsm
+yay -S --noconfirm overskride-bin uwsm eww
 
 # Auto start gnome on login with ly
 if [[ $(cat /etc/pam.d/ly | grep gnome | wc -l) -eq 0 ]]; then 
@@ -36,3 +36,5 @@ sudo cp ./hyprland/* /usr/local/bin/
 mkdir -p ~/.config/ncmpcpp/previews
 mkdir -p ~/.config/mpd/playlist
 systemctl --user enable mpd
+
+./terminal-apps.sh

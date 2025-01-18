@@ -8,5 +8,6 @@ set -e
 ./dark_mode.sh
 ./apps.sh
 sudo ./hide_system_apps.sh
+sudo ./terminal-apps.sh
 ./remove_shortcut.sh
 ./remmina.sh

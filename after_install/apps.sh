@@ -7,3 +7,4 @@ yay -Syu --noconfirm rbenv ruby-build 1password mongodb-compass \
 
 
 sudo sed -i -E 's/Exec=(.*) mongodb-compass %U$/Exec=\1 mongodb-compass --ignore-additional-command-line-flags --password-store="gnome-libsecret" %U/g' /usr/share/applications/mongodb-compass.desktop
+sudo sed -i -E 's/Exec=(.*)%U/Exec=env ELECTRON_OZONE_PLATFORM_HINT= \1%U/g' /usr/share/applications/1password.desktop
