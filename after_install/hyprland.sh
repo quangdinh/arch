@@ -12,7 +12,7 @@ sudo pacman -S --noconfirm hyprland hyprpaper hyprlock hypridle waybar wofi ghos
 yay -S --noconfirm overskride-bin eww
 
 # Auto start gnome on login with ly
-if [[ $(cat /etc/pam.d/ly | grep gnome | wc -l) -eq 0 ]]; then 
+if [[ $(cat /etc/pam.d/ly | grep gnome | wc -l) -eq 0 ]]; then
   sudo sed -i -E "s/account(.*)login/auth       optional     pam_gnome_keyring.so\naccount\1login/g" /etc/pam.d/ly
   sudo sed -i -E "s/session(.*)login/session\1login\nsession    optional     pam_gnome_keyring.so auto_start/g" /etc/pam.d/ly
 fi
@@ -26,11 +26,11 @@ sudo rm -rf /usr/share/dbus-1/services/org.a11y.*
 sudo ./hide_system_apps.sh
 ./yazi.sh
 ./imv.sh
-./remove-uwsm.sh
+sudo ./remove-uwsm.sh
 sudo mkdir -p /usr/local/bin
 sudo cp ./hyprland/* /usr/local/bin/
 mkdir -p ~/.config/ncmpcpp/previews
 mkdir -p ~/.config/mpd/playlist
 systemctl --user enable mpd
 
-./terminal-apps.sh
+sudo ./terminal-apps.sh
