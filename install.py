@@ -286,6 +286,8 @@ def parse_hooks_encrypt_lvm(encrypt):
         results.append("encrypt")
         results.append("lvm2")
       results.append(hook)
+      if swapuuid != "":
+        results.append("resume")
       continue
 
     results.append(hook)
@@ -343,6 +345,7 @@ clear()
 disk = get_install_disk()
 encrypt = False
 swap = 0
+swapuuid = ""
 encrypt_password = ""
 timezone = ""
 cryptroot = ""
@@ -458,6 +461,7 @@ if disk != "None":
     partition = os.popen('blkid ' + disk +'* | grep -oP \'/dev/[a-z0-9]*:.*PARTLABEL="swap"\' | grep -o \'/dev/[a-z0-9]*\'').readline().strip()
     run_command("/usr/bin/mkswap", partition)
     run_command("/usr/bin/swapon", partition)
+    swapuuid = os.popen('lsblk -no uuid ' + partition).readline().strip()
     print("Done")
 
   print_task("Formatting EPS partition")
@@ -489,6 +493,7 @@ if disk != "None":
       partition = "/dev/mapper/" + volume_group + "-lvSwap"
       run_command("/usr/bin/mkswap", partition)
       run_command("/usr/bin/swapon", partition)
+      swapuuid = os.popen('lsblk -no uuid ' + partition).readline().strip()
       print("Done")
 
     print_task("Creating root partition")
@@ -631,6 +636,9 @@ if disk != "None":
     cryptuuid = get_crypt_uuid(disk)
     cmdLine = 'cryptdevice=UUID=' + cryptuuid + ':cryptlvm root=UUID=' + rootuuid + ' rw ' + cpucode + 'initrd=/initramfs-linux.img'
   
+  if swapuuid != "":
+    cmdLine = cmdLine + ' resume=UUID=' + swapuuid 
+
   cmdLine = '"' + cmdLine + ' quiet loglevel=3 splash rd.systemd.show_status=auto rd.udev.log_priority=3 module_blacklist=iTCO_wdt,iTCO_vendor_support nowatchdog"'
 
   print_task("Installing boot manager")
