@@ -7,7 +7,7 @@ sudo pacman -S --noconfirm hyprland hyprpaper hyprlock hypridle waybar wofi ghos
   xdg-desktop-portal-hyprland swaync ly slurp grim wl-clipboard libnotify jq \
   swappy polkit-gnome ttf-dejavu noto-fonts noto-fonts-extra noto-fonts-emoji \
   ncmpcpp mpd mpc nm-connection-editor brightnessctl hyprpicker hyprsunset \
-  kanshi gnome-keyring pulsemixer
+  kanshi gnome-keyring pulsemixer udiskie
 
 yay -S --noconfirm overskride-bin eww
 
