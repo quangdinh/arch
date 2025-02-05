@@ -2,7 +2,7 @@
 
 set -e
 yay -Syu --noconfirm rbenv ruby-build 1password mongodb-compass \
-  postman-bin slack-desktop-wayland zen-browser-bin \
+  postman-bin slack-desktop-wayland google-chrome \
   gita kubectl k9s fnm-bin oh-my-posh-bin obsidian
 
 
