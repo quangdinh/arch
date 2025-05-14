@@ -588,12 +588,12 @@ run_chroot("passwd -l root")
 print("Done")
 
 print_task("Installing kernel")
-run_chroot("/usr/bin/pacman", "-S --noconfirm", "linux linux-firmware")
+run_chroot("/usr/bin/pacman", "-S --noconfirm", "linux-lts linux-firmware")
 print("Done")
 
 if 'nvidia' in vga:
   print_task("Installing nvidia")
-  run_chroot("/usr/bin/pacman", "-S --noconfirm", "nvidia")
+  run_chroot("/usr/bin/pacman", "-S --noconfirm", "nvidia-lts")
   print("Done")
 
 
