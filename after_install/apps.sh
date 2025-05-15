@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
-yay -Syu --noconfirm rbenv ruby-build 1password mongodb-compass \
+yay -Syu --noconfirm rbenv ruby-build 1password mongodb-compass-bin \
   postman-bin slack-desktop-wayland google-chrome \
   gita kubectl k9s fnm-bin oh-my-posh-bin obsidian
 
