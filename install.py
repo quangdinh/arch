@@ -630,11 +630,11 @@ if disk != "None":
   rootuuid = get_root_uuid()
 
   cpucode = get_cpu_code(cpu)
-  cmdLine = 'root=UUID=' + rootuuid + ' rw ' + cpucode + 'initrd=/initramfs-linux.img'
+  cmdLine = 'root=UUID=' + rootuuid + ' rw ' + cpucode + 'initrd=/initramfs-linux-lts.img'
 
   if encrypt:
     cryptuuid = get_crypt_uuid(disk)
-    cmdLine = 'cryptdevice=UUID=' + cryptuuid + ':cryptlvm root=UUID=' + rootuuid + ' rw ' + cpucode + 'initrd=/initramfs-linux.img'
+    cmdLine = 'cryptdevice=UUID=' + cryptuuid + ':cryptlvm root=UUID=' + rootuuid + ' rw ' + cpucode + 'initrd=/initramfs-linux-lts.img'
   
   if swapuuid != "":
     cmdLine = cmdLine + ' resume=UUID=' + swapuuid 
@@ -648,7 +648,7 @@ if disk != "None":
   efiboot = os.popen('efibootmgr | grep "Arch Linux" | grep -oP "[0-9]+"').readline().strip()
   if efiboot != "":
     run_chroot("/usr/bin/efibootmgr", "-Bb", efiboot)
-  run_chroot("/usr/bin/efibootmgr", "--create", "--disk", disk, "--part 1", "--label \"Arch Linux\"", "--loader", "/vmlinuz-linux", "--unicode",  cmdLine, "--verbose")
+  run_chroot("/usr/bin/efibootmgr", "--create", "--disk", disk, "--part 1", "--label \"Arch Linux\"", "--loader", "/vmlinuz-linux-lts", "--unicode",  cmdLine, "--verbose")
   print("Done")
 
 print_task("Installing NetworkManager")
