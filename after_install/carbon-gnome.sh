@@ -10,4 +10,3 @@ set -e
 sudo ./hide_system_apps.sh
 sudo ./terminal-apps.sh
 ./remove_shortcut.sh
-./remmina.sh
