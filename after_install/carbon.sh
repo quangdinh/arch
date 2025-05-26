@@ -8,4 +8,3 @@ set -e
 ./fingerprint.sh
 ./ms-fonts.sh
 ./dark_mode.sh
-./apps.sh

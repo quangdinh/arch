@@ -2,4 +2,4 @@
 
 set -e
 
-yay -Syu --noconfirm aws-cli awsvpnclient 
+yay -Syu --noconfirm aws-cli
