@@ -2,4 +2,4 @@
 
 set -e
 
-yay -Syu --noconfirm goland golang-jre webstorm webstorm-jre datagrip datagrip-jre
+yay -Syu --noconfirm goland goland-jre webstorm webstorm-jre datagrip datagrip-jre
