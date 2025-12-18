@@ -283,7 +283,7 @@ def parse_hooks_encrypt_lvm(encrypt):
 
     if hook == "filesystems":
       if encrypt:
-        results.append("encrypt")
+        results.append("sd-encrypt")
         results.append("lvm2")
       results.append(hook)
       if swapuuid != "":
@@ -636,7 +636,7 @@ if disk != "None":
 
   if encrypt:
     cryptuuid = get_crypt_uuid(disk)
-    cmdLine = 'cryptdevice=UUID=' + cryptuuid + ':cryptlvm root=UUID=' + rootuuid + ' rw ' + cpucode + 'initrd=/initramfs-linux-lts.img'
+    cmdLine = 'rd.luks.name=' + cryptuuid + '=cryptlvm root=UUID=' + rootuuid + ' rw ' + cpucode + 'initrd=/initramfs-linux-lts.img'
   
   if swapuuid != "":
     cmdLine = cmdLine + ' resume=UUID=' + swapuuid 
