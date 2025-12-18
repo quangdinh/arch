@@ -624,6 +624,8 @@ run_chroot("/usr/bin/sed", "-i -E", "\"s/MODULES=(.*)/MODULES=("+ " ".join(modul
 if encrypt:
   run_chroot("/usr/bin/sed", "-i -e", "\"s/HOOKS=(.*)/HOOKS=(" + hooks + ")/g\"", "/etc/mkinitcpio.conf")
 
+run_chroot("echo \"KEYMAP=us\"", ">", "/etc/vconsole.conf")
+
 run_chroot("/usr/bin/mkinitcpio", "-P")
 
 if disk != "None":
