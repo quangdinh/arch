@@ -329,11 +329,11 @@ def get_cpu_code(cpu):
 
 def format_root(partition, fs):
   if fs == "btrfs":
-    run_command("/usr/bin/mkfs.btrfs", "-L", "ArchRoot", partition)
+    run_command("/usr/bin/mkfs.btrfs", "-L -F", "ArchRoot", partition)
   elif fs == "ext4":
-    run_command("/usr/bin/mkfs.ext4", partition)
+    run_command("/usr/bin/mkfs.ext4", "-F", partition)
   else:
-    run_command("/usr/bin/mkfs.xfs", partition)
+    run_command("/usr/bin/mkfs.xfs", "-F", partition)
 
 cpu = detect_cpu()
 vga = detect_vga()
